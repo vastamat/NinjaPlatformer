@@ -4,21 +4,26 @@
 public class RaycastController : MonoBehaviour
 {
 		public LayerMask collisionMask;
-		public int horizontalRayCount = 4;
-		public int verticalRayCount = 4;
 
 		protected const float skinWidth = 0.015f;
+		private   const float distBetweenRays = 0.25f;
 
+		protected int horizontalRayCount;
+		protected int verticalRayCount;
 		protected float horizontalRaySpacing;
 		protected float verticalRaySpacing;
 
-		private BoxCollider2D capsuleCol;
+		private BoxCollider2D boxCol;
 		protected RaycastOrigins raycastOrigins;
 
 		// Use this for initialization
+		public virtual void Awake()
+		{
+				boxCol = GetComponent<BoxCollider2D>();
+		}
+
 		public virtual void Start()
 		{
-				capsuleCol = GetComponent<BoxCollider2D>();
 				CalculateRaySpacing();
 		}
 
@@ -36,8 +41,11 @@ public class RaycastController : MonoBehaviour
 		{
 				Bounds bounds = GetShrunkenBounds();
 
-				horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
-				verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
+				float boundsWidth = bounds.size.x;
+				float boundsHeight = bounds.size.y;
+
+				horizontalRayCount = Mathf.RoundToInt(boundsHeight / distBetweenRays);
+				verticalRayCount   = Mathf.RoundToInt(boundsWidth / distBetweenRays);
 
 				horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
 				verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
@@ -45,9 +53,9 @@ public class RaycastController : MonoBehaviour
 
 		Bounds GetShrunkenBounds()
 		{
-				Bounds bounds = capsuleCol.bounds;
+				Bounds bounds = boxCol.bounds;
 
-				bounds.Expand(skinWidth * -2);
+				bounds.Expand(skinWidth * -2.0f);
 
 				return bounds;
 		}
