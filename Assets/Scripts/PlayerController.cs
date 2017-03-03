@@ -60,6 +60,10 @@ public class PlayerController : RaycastController
 
 						if (hit)
 						{
+								if (hit.collider.CompareTag("Fatal"))
+								{
+										Destroy(gameObject);
+								}
 								float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
 								if (i == 0 && slopeAngle <= maxSlopeAngle)
