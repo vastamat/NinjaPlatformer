@@ -23,8 +23,6 @@ public class Player : MonoBehaviour
 
 				gravity = -(2 * jumpHeight) / Mathf.Pow(timeToHighestPoint, 2);
 				jumpVelocity = Mathf.Abs(gravity) * timeToHighestPoint;
-
-				print("Gravity: " + gravity + " Jump Velocity: " + jumpVelocity);
 		}
 
 		// Update is called once per frame
