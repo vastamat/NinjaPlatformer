@@ -44,12 +44,19 @@ public class Player : MonoBehaviour
 		{
 				CalculateVelocity();
 				HandleWallSliding();
-				
+
 				controller.Move(velocity * Time.deltaTime);
 
 				if (controller.GetCollisionInfo().above || controller.GetCollisionInfo().below)
 				{
-						velocity.y = 0.0f;
+						if (controller.GetCollisionInfo().slidingDownMaxSlope)
+						{
+								velocity.y += controller.GetCollisionInfo().slopeNormal.y * -gravity * Time.deltaTime;
+						}
+						else
+						{
+								velocity.y = 0.0f;
+						}
 				}
 		}
 
@@ -80,7 +87,19 @@ public class Player : MonoBehaviour
 				}
 				if (controller.GetCollisionInfo().below)
 				{
-						velocity.y = maxJumpVelocity;
+						if (controller.GetCollisionInfo().slidingDownMaxSlope)
+						{
+								if (directionalInput.x != -Mathf.Sign(controller.GetCollisionInfo().slopeNormal.x))
+								{
+										//not jumping against max slope
+										velocity.y = maxJumpVelocity * controller.GetCollisionInfo().slopeNormal.y;
+										velocity.x = maxJumpVelocity * controller.GetCollisionInfo().slopeNormal.x;
+								}
+						}
+						else
+						{
+								velocity.y = maxJumpVelocity;
+						}
 				}
 		}
 
