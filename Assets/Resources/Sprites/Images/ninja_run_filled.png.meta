@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: 889ccbad424af2745a809621b54ccde8
-timeCreated: 1488492024
+timeCreated: 1488554486
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ninja_run_filled_0
     21300002: ninja_run_filled_1
+    21300004: ninja_run_filled_2
+    21300006: ninja_run_filled_3
+    21300008: ninja_run_filled_4
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -91,10 +94,10 @@ TextureImporter:
       name: ninja_run_filled_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 31
-        width: 339
-        height: 376
+        x: 73
+        y: 73
+        width: 321
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,10 +107,49 @@ TextureImporter:
       name: ninja_run_filled_1
       rect:
         serializedVersion: 2
-        x: 612
+        x: 585
+        y: 100
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ninja_run_filled_2
+      rect:
+        serializedVersion: 2
+        x: 603
         y: 29
-        width: 321
-        height: 355
+        width: 307
+        height: 399
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ninja_run_filled_3
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 52
+        width: 339
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ninja_run_filled_4
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 78
+        width: 14
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
