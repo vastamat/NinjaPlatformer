@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 		private const float skinWidth = 0.015f;
 		private BoxCollider2D capsuleCol;
 		private RaycastOrigins raycastOrigins;
+		private CollisionInfo collisions;
 
 		void Start()
 		{
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 		public void Move(Vector2 _velocity)
 		{
 				UpdateRaycastOrigins();
+				collisions.Reset();
 
 				if (_velocity.x != 0.0f)
 				{
@@ -55,6 +57,10 @@ public class PlayerController : MonoBehaviour
 						{
 								_velocity.x = (hit.distance - skinWidth) * directionX;
 								rayLength = hit.distance;
+
+								collisions.left = (directionX == -1);
+								collisions.right = (directionX == 1);
+
 						}
 				}
 		}
@@ -77,6 +83,9 @@ public class PlayerController : MonoBehaviour
 						{
 								_velocity.y = (hit.distance - skinWidth) * directionY;
 								rayLength = hit.distance;
+
+								collisions.below = (directionY == -1);
+								collisions.above = (directionY == 1);
 						}
 				}
 		}
@@ -112,66 +121,24 @@ public class PlayerController : MonoBehaviour
 				return bounds;
 		}
 
+		public CollisionInfo GetCollisionInfo()
+		{
+				return collisions;
+		}
+
 		struct RaycastOrigins
 		{
 				public Vector2 topLeft, topRight;
 				public Vector2 bottomLeft, bottomRight;
 		}
 
+		public struct CollisionInfo
+		{
+				public bool above, below, left, right;
 
-		//public float movementSpeed = 500.0f;
-		//public float jumpForce = 100.0f;
-		//public float maxVelocity = 10.0f;
-
-		//private Rigidbody2D rb;
-		//private Animator animator;
-		//private SpriteRenderer sr;
-		//private bool isJumping = false;
-
-		//// Use this for initialization
-		//void Start()
-		//{
-		//		rb = GetComponent<Rigidbody2D>();
-		//		animator = GetComponent<Animator>();
-		//		sr = GetComponent<SpriteRenderer>();
-		//}
-
-		//void FixedUpdate()
-		//{
-		//		float horizontal = Input.GetAxis("Horizontal");
-
-		//		rb.AddForce(Vector2.right * horizontal * movementSpeed);
-
-		//		if (!isJumping)
-		//		{
-		//				if (Input.GetKey(KeyCode.Space))
-		//				{
-		//						//rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-		//						rb.AddForce(Vector2.up * jumpForce);
-		//						isJumping = true;
-		//				}
-		//		}
-
-		//		//clamp horizontal velocity to max
-		//		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxVelocity, maxVelocity), rb.velocity.y);
-
-		//		if (rb.velocity.x < 0.0f)
-		//		{
-		//				sr.flipX = true;
-		//		}
-		//		else if (rb.velocity.x > 0.0f)
-		//		{
-		//				sr.flipX = false;
-		//		}
-
-		//		animator.SetFloat("velocity", rb.velocity.x);
-		//}
-
-		//void OnCollisionEnter2D(Collision2D _collision)
-		//{
-		//		if (_collision.gameObject.CompareTag("Jumpable"))
-		//		{
-		//				isJumping = false;
-		//		}
-		//}
+				public void Reset()
+				{
+						above = below = left = right = false;
+				}
+		}
 }
