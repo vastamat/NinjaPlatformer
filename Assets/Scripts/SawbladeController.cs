@@ -29,13 +29,16 @@ public class SawbladeController : MonoBehaviour
 		// Update is called once per frame
 		void Update()
 		{
-				Vector2 velocity = CalculateMovement();
+				if (globalWaypoints.Length != 0)
+				{
+						Vector2 velocity = CalculateMovement();
 
-				float rotationZ = transform.rotation.eulerAngles.z;
+						float rotationZ = transform.rotation.eulerAngles.z;
 
-				transform.rotation = Quaternion.identity;
-				transform.Translate(velocity);
-				transform.Rotate(0.0f, 0.0f, rotationZ);
+						transform.rotation = Quaternion.identity;
+						transform.Translate(velocity);
+						transform.Rotate(0.0f, 0.0f, rotationZ);
+				}
 		}
 
 		Vector2 CalculateMovement()
