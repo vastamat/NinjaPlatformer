@@ -54,18 +54,6 @@ public class Player : MonoBehaviour
 				CalculateVelocity();
 				HandleWallSliding();
 
-				anim.SetFloat("velocityX", Mathf.Abs(velocity.x));
-				anim.SetFloat("velocityY", Mathf.Abs(velocity.y));
-
-				if (velocity.x > 0.0f)
-				{
-						sr.flipX = false;
-				}
-				else if (velocity.x < 0.0f)
-				{
-						sr.flipX = true;
-				}
-
 				controller.Move(velocity * Time.deltaTime);
 
 				if (controller.GetCollisionInfo().above || controller.GetCollisionInfo().below)
@@ -78,6 +66,20 @@ public class Player : MonoBehaviour
 						{
 								velocity.y = 0.0f;
 						}
+				}
+
+				anim.SetFloat("velocityX", Mathf.Abs(velocity.x));
+				anim.SetFloat("velocityY", Mathf.Abs(velocity.y));
+
+				anim.SetBool("isSliding", controller.GetCollisionInfo().slidingDownMaxSlope || wallSliding);
+
+				if (velocity.x > 0.0f)
+				{
+						sr.flipX = false;
+				}
+				else if (velocity.x < 0.0f)
+				{
+						sr.flipX = true;
 				}
 		}
 
