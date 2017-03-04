@@ -54,8 +54,8 @@ public class Player : MonoBehaviour
 				CalculateVelocity();
 				HandleWallSliding();
 
-				anim.SetFloat("velocityX", velocity.x);
-				anim.SetFloat("velocityY", velocity.y);
+				anim.SetFloat("velocityX", Mathf.Abs(velocity.x));
+				anim.SetFloat("velocityY", Mathf.Abs(velocity.y));
 
 				if (velocity.x > 0.0f)
 				{
