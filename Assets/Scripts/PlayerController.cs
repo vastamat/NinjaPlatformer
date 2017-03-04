@@ -2,6 +2,7 @@
 
 public class PlayerController : RaycastController
 {
+		/** The maximum angle of slope the player can climb */
 		public float maxSlopeAngle = 80.0f;
 
 		private CollisionInfo collisions;
@@ -49,7 +50,7 @@ public class PlayerController : RaycastController
 						rayLength = 2.0f * skinWidth;
 				}
 
-				for (int i = 0; i < horizontalRayCount; i++)
+				for (int i = 0; i < horizontalRayCount; ++i)
 				{
 						Vector2 rayOrigin = (directionX == -1) ? rayOrigin = raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
 						rayOrigin += Vector2.up * (horizontalRaySpacing * i);
@@ -63,7 +64,14 @@ public class PlayerController : RaycastController
 								if (hit.collider.CompareTag("Fatal"))
 								{
 										Destroy(gameObject);
+										break;
 								}
+
+								if (hit.distance == 0.0f)
+								{
+										continue;
+								}
+
 								float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
 								if (i == 0 && slopeAngle <= maxSlopeAngle)
@@ -107,7 +115,7 @@ public class PlayerController : RaycastController
 				float directionY = Mathf.Sign(_deltaMove.y);
 				float rayLength = Mathf.Abs(_deltaMove.y) + skinWidth;
 
-				for (int i = 0; i < verticalRayCount; i++)
+				for (int i = 0; i < verticalRayCount; ++i)
 				{
 						Vector2 rayOrigin = (directionY == -1) ? rayOrigin = raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 						rayOrigin += Vector2.right * (verticalRaySpacing * i + _deltaMove.x);
@@ -118,6 +126,12 @@ public class PlayerController : RaycastController
 
 						if (hit)
 						{
+								if (hit.collider.CompareTag("Fatal"))
+								{
+										Destroy(gameObject);
+										break;
+								}
+
 								_deltaMove.y = (hit.distance - skinWidth) * directionY;
 								rayLength = hit.distance;
 
@@ -221,7 +235,7 @@ public class PlayerController : RaycastController
 
 						if (slopeAngle > maxSlopeAngle)
 						{
-								_deltaMove.x = Mathf.Sign(_hit.normal.x) * Mathf.Abs((_deltaMove.y - _hit.distance) / Mathf.Tan(slopeAngle * Mathf.Deg2Rad));
+								_deltaMove.x = Mathf.Sign(_hit.normal.x) * (Mathf.Abs(_deltaMove.y) - _hit.distance) / Mathf.Tan(slopeAngle * Mathf.Deg2Rad);
 
 								collisions.slopeAngle = slopeAngle;
 								collisions.slidingDownMaxSlope = true;
@@ -247,6 +261,7 @@ public class PlayerController : RaycastController
 
 				public Vector2 velocityOld;
 				public Vector2 slopeNormal;
+
 				public void Reset()
 				{
 						above = below = left = right = false;

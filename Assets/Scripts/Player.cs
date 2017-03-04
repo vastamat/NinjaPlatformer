@@ -5,13 +5,15 @@ public class Player : MonoBehaviour
 {
 		public float maxJumpHeight = 4;
 		public float minJumpHeight = 1;
-
 		public float timeToHighestPoint = 0.4f;
+
 		public float moveSpeed = 6.0f;
 		public float accelerationTimeInAir = 0.2f;
 		public float accelerationTimeOnGround = 0.1f;
+
 		public float maxWallSlideSpeed = 3.0f;
 		public float wallStickTime = 0.25f;
+
 		public Vector2 wallJumpClimb;
 		public Vector2 wallJumpOff;
 		public Vector2 wallLeap;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
 		private Vector2 directionalInput;
 		private bool wallSliding = false;
 		private int wallDirX;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -113,12 +116,12 @@ public class Player : MonoBehaviour
 
 		private void CalculateVelocity()
 		{
-				float targetVelocity = directionalInput.x * moveSpeed;
+				float targetVelocityX = directionalInput.x * moveSpeed;
 
 				velocity.x = Mathf.SmoothDamp(velocity.x,
-						targetVelocity,
+						targetVelocityX,
 						ref velocityXSmooth,
-						controller.GetCollisionInfo().below ? accelerationTimeOnGround : accelerationTimeInAir);
+						(controller.GetCollisionInfo().below) ? accelerationTimeOnGround : accelerationTimeInAir);
 				velocity.y += gravity * Time.deltaTime;
 		}
 
