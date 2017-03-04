@@ -16,11 +16,12 @@ public class Player : MonoBehaviour
     public float maxWallSlideSpeed = 3.0f;
     public float wallStickTime = 0.25f;
 
-    public GameObject GibPrefab;
-
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
     public Vector2 wallLeap;
+
+    public GameObject GibPrefab;
+    public AudioClip DeathSound;
 
     private float timeToWallUnstick;
     private float maxJumpVelocity;
@@ -198,6 +199,8 @@ public class Player : MonoBehaviour
         {
             GameObject.Destroy(item);
         }
+
+        AudioSource.PlayClipAtPoint(DeathSound, this.transform.position);
 
         for (int i = 0; i < 4; i++)
         {
