@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
 		public float maxJumpHeight = 4;
@@ -27,6 +29,8 @@ public class Player : MonoBehaviour
 		private Vector2 velocity;
 
 		private PlayerController controller;
+		private Animator anim;
+		private SpriteRenderer sr;
 
 		private Vector2 directionalInput;
 		private bool wallSliding = false;
@@ -36,6 +40,8 @@ public class Player : MonoBehaviour
 		void Start()
 		{
 				controller = GetComponent<PlayerController>();
+				anim = GetComponent<Animator>();
+				sr = GetComponent<SpriteRenderer>();
 
 				gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToHighestPoint, 2);
 				maxJumpVelocity = Mathf.Abs(gravity) * timeToHighestPoint;
@@ -47,6 +53,18 @@ public class Player : MonoBehaviour
 		{
 				CalculateVelocity();
 				HandleWallSliding();
+
+				anim.SetFloat("velocityX", velocity.x);
+				anim.SetFloat("velocityY", velocity.y);
+
+				if (velocity.x > 0.0f)
+				{
+						sr.flipX = false;
+				}
+				else if (velocity.x < 0.0f)
+				{
+						sr.flipX = true;
+				}
 
 				controller.Move(velocity * Time.deltaTime);
 
