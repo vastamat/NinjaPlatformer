@@ -63,8 +63,7 @@ public class PlayerController : RaycastController
 						{
 								if (hit.collider.CompareTag("Fatal"))
 								{
-										Destroy(gameObject);
-										break;
+										collisions.fatalCollision = true;
 								}
 
 								if (hit.distance == 0.0f)
@@ -128,8 +127,7 @@ public class PlayerController : RaycastController
 						{
 								if (hit.collider.CompareTag("Fatal"))
 								{
-										Destroy(gameObject);
-										break;
+										collisions.fatalCollision = true;
 								}
 
 								_deltaMove.y = (hit.distance - skinWidth) * directionY;
@@ -255,6 +253,8 @@ public class PlayerController : RaycastController
 				public bool climbingSlope;
 				public bool descendingSlope;
 				public bool slidingDownMaxSlope;
+				public bool fatalCollision;
+
 				public float slopeAngle, slopeAngleOld;
 
 				public int faceDir;
@@ -268,6 +268,7 @@ public class PlayerController : RaycastController
 						climbingSlope = false;
 						descendingSlope = false;
 						slidingDownMaxSlope = false;
+						fatalCollision = false;
 
 						slopeAngleOld = slopeAngle;
 						slopeAngle = 0.0f;

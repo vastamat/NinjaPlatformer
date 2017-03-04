@@ -36,9 +36,11 @@ public class Player : MonoBehaviour
 		private bool wallSliding = false;
 		private int wallDirX;
 
+		private Vector3 startPos;
 		// Use this for initialization
 		void Start()
 		{
+				startPos = transform.position;
 				controller = GetComponent<PlayerController>();
 				anim = GetComponent<Animator>();
 				sr = GetComponent<SpriteRenderer>();
@@ -80,6 +82,11 @@ public class Player : MonoBehaviour
 				else if (velocity.x < 0.0f)
 				{
 						sr.flipX = true;
+				}
+
+				if (controller.GetCollisionInfo().fatalCollision)
+				{
+						Die();
 				}
 		}
 
@@ -179,5 +186,13 @@ public class Player : MonoBehaviour
 								timeToWallUnstick = wallStickTime;
 						}
 				}
+		}
+
+		private void Die()
+		{
+				velocity.x = 0.0f;
+				velocity.y = 0.0f;
+
+				transform.position = startPos;
 		}
 }

@@ -1,33 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 
-public class AnimateBackground : MonoBehaviour {
+public class AnimateBackground : MonoBehaviour
+{
+		public float speed = 1.0f;
+		public Texture2D[] images;
 
-    public float Speed = 1.0f;
-    private ScreenOverlay overlay;
-    private float counter = 0.0f;
-    private int currIndex = 0;
+		private ScreenOverlay overlay;
+		private float counter = 0.0f;
+		private int currIndex = 0;
 
-    public Texture2D[] images;
+		// Use this for initialization
+		void Start()
+		{
+				overlay = GetComponent<ScreenOverlay>();
+		}
 
-    // Use this for initialization
-    void Start () {
-        overlay = this.GetComponent<ScreenOverlay>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+		// Update is called once per frame
+		void Update()
+		{
+				counter += speed * Time.deltaTime;
 
-        counter += Speed * Time.deltaTime;
-		
-        if(counter >= 1.0f)
-        {
-            counter = 0.0f;
-            currIndex++;
-            if (currIndex >= images.Length) currIndex = 0;
-            overlay.texture = images[currIndex];
-        }
-	}
+				if (counter >= 1.0f)
+				{
+						counter = 0.0f;
+						currIndex++;
+						if (currIndex >= images.Length) currIndex = 0;
+						overlay.texture = images[currIndex];
+				}
+		}
 }
