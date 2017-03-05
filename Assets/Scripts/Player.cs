@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
 		public Vector2 wallLeap;
 
 		public AudioClip DeathSound;
-		public Timer timer;
 
 		private float timeToWallUnstick;
 		private float maxJumpVelocity;
@@ -214,7 +213,5 @@ public class Player : MonoBehaviour
 				velocity.x = 0.0f;
 				velocity.y = 0.0f;
 				transform.position = startPos;
-
-				timer.RefreshTimer();
 		}
 }

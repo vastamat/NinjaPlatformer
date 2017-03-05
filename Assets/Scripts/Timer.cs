@@ -6,6 +6,11 @@ public class Timer : MonoBehaviour
 		public Text text;
 
 		private float time = 0.0f;
+
+		void Start()
+		{
+				time = GlobalControl.instance.timeSurvived;
+		}
 		// Update is called once per frame
 		void Update()
 		{

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class ExitDoor : MonoBehaviour
@@ -18,6 +19,7 @@ public class ExitDoor : MonoBehaviour
 				{
 						sr.sprite = exitOpened;
 						Debug.Log("Exit Reached, swap scene or whatever");
+						SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 				}
 		}
 }
