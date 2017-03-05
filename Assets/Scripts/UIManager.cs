@@ -11,10 +11,13 @@ public class UIManager : MonoBehaviour
 		void Start()
 		{
 				volumeSlider = GetComponentInChildren<Slider>();
-				// Set the sliders value to the saved volume from previous games
-				volumeSlider.value = GlobalControl.instance.savedStats.volume;
-				// Set the slider to inactive as it should come up when the music button is clicked
-				volumeSlider.gameObject.SetActive(false);
+				if (volumeSlider != null)
+				{
+						// Set the sliders value to the saved volume from previous games
+						volumeSlider.value = GlobalControl.instance.savedStats.volume;
+						// Set the slider to inactive as it should come up when the music button is clicked
+						volumeSlider.gameObject.SetActive(false);
+				}
 		}
 
 		public void OnVolumeChanged(float value)

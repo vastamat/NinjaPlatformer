@@ -22,9 +22,7 @@ public class RocketSpawner : MonoBehaviour
 
 				StartLaunching(startWait);
 		}
-		void Update()
-		{
-		}
+
 		void LaunchRocket()
 		{
 				//get a random enemy from the pool
