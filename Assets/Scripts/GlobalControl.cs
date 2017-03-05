@@ -92,6 +92,8 @@ public class GlobalControl : MonoBehaviour
 
 						//read the highscore
 						savedStats = (SavedData)formatter.Deserialize(saveFile);
+
+						saveFile.Close();
 				}
 		}
 }
