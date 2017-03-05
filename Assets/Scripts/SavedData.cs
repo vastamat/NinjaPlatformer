@@ -7,7 +7,7 @@ public class SavedData
 		/*
 			* the top 10 high scores
 			*/
-		public float[] highScores = new float[10]{ 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+		public float[] highScores = new float[10]{ 9999.0f, 9999.0f, 9999.0f, 9999.0f, 9999.0f, 9999.0f, 9999.0f, 9999.0f, 9999.0f, 9999.0f };
 
 		/*
 			* the unlocked levels (1 to num of levels)

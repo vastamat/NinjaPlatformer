@@ -28,14 +28,12 @@ public class OnLevelEnd : MonoBehaviour
 				//save the highscore in survival mode
 
 				//check if it's equal or higher than the lowest highscore (last index)
-				if (GlobalControl.instance.savedStats.highScores[GlobalControl.instance.savedStats.highScores.Length - 1] != 0.0f)
+
+				if (GlobalControl.instance.timeSurvived >=
+						GlobalControl.instance.savedStats.highScores[GlobalControl.instance.savedStats.highScores.Length - 1])
 				{
-						if (GlobalControl.instance.timeSurvived >=
-								GlobalControl.instance.savedStats.highScores[GlobalControl.instance.savedStats.highScores.Length - 1])
-						{
-								//if so then it's not going to be saved
-								return;
-						}
+						//if so then it's not going to be saved
+						return;
 				}
 				//Check if the score is the same as a score already in the array
 				if (System.Array.IndexOf(GlobalControl.instance.savedStats.highScores, GlobalControl.instance.timeSurvived) > -1)
@@ -57,9 +55,7 @@ public class OnLevelEnd : MonoBehaviour
 				{
 						for (int j = i + 1; j < GlobalControl.instance.savedStats.highScores.Length; j++)
 						{
-								// check if the first position (i) is higher than the next position (j)
-								if (GlobalControl.instance.savedStats.highScores[i] > GlobalControl.instance.savedStats.highScores[j] ||
-											GlobalControl.instance.savedStats.highScores[i] == 0.0f)
+								if (GlobalControl.instance.savedStats.highScores[i] > GlobalControl.instance.savedStats.highScores[j])
 								{
 										//if the element at the first position is lower, then swap it
 										float temp = GlobalControl.instance.savedStats.highScores[j];

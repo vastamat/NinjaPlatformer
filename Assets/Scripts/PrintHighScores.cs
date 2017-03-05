@@ -15,7 +15,7 @@ public class PrintHighScores : MonoBehaviour
 				for (int i = 0; i < highscoreTexts.Length; i++)
 				{
 						float highscore = GlobalControl.instance.savedStats.highScores[i];
-						if (highscore != 0.0f)
+						if (highscore != 9999.0f)
 						{
 								int minutes = (int)(highscore / 60.0f);
 								int seconds = (int)Mathf.Repeat(highscore, 60.0f);
