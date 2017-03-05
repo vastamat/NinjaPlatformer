@@ -22,6 +22,11 @@ public class GlobalControl : MonoBehaviour
 			*/
 		public ushort timeSurvived = 0;
 
+		/*
+			* the level that was played (to be used in retry function)
+			*/
+		public byte levelPlayed;
+
 		void Awake()
 		{
 				/*

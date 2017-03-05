@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
 
 		public void OnLevel1()
 		{
+				GlobalControl.instance.levelPlayed = 1;
 				SceneManager.LoadScene("Level1");
 		}
 
@@ -81,6 +82,7 @@ public class UIManager : MonoBehaviour
 				//Load level 2 if it's unlocked
 				if (GlobalControl.instance.savedStats.unlockedLevels >= 2)
 				{
+						GlobalControl.instance.levelPlayed = 2;
 						SceneManager.LoadScene("Level2");
 				}
 		}
@@ -90,6 +92,7 @@ public class UIManager : MonoBehaviour
 				//Load level 3 if it's unlocked
 				if (GlobalControl.instance.savedStats.unlockedLevels >= 3)
 				{
+						GlobalControl.instance.levelPlayed = 3;
 						SceneManager.LoadScene("Level3");
 				}
 		}
@@ -99,6 +102,7 @@ public class UIManager : MonoBehaviour
 				//Load level 4 if it's unlocked
 				if (GlobalControl.instance.savedStats.unlockedLevels >= 4)
 				{
+						GlobalControl.instance.levelPlayed = 4;
 						SceneManager.LoadScene("Level4");
 				}
 		}
@@ -108,6 +112,7 @@ public class UIManager : MonoBehaviour
 				//Load level 5 if it's unlocked
 				if (GlobalControl.instance.savedStats.unlockedLevels >= 5)
 				{
+						GlobalControl.instance.levelPlayed = 5;
 						SceneManager.LoadScene("Level5");
 				}
 		}
@@ -117,6 +122,7 @@ public class UIManager : MonoBehaviour
 				//Load level 6 if it's unlocked
 				if (GlobalControl.instance.savedStats.unlockedLevels >= 6)
 				{
+						GlobalControl.instance.levelPlayed = 6;
 						SceneManager.LoadScene("Level6");
 				}
 		}
@@ -126,6 +132,7 @@ public class UIManager : MonoBehaviour
 				//Load level 7 if it's unlocked
 				if (GlobalControl.instance.savedStats.unlockedLevels >= 7)
 				{
+						GlobalControl.instance.levelPlayed = 7;
 						SceneManager.LoadScene("Level7");
 				}
 		}

@@ -15,12 +15,15 @@ public class OnLevelEnd : MonoBehaviour
 				//set the text to the time survived
 				elapsedTime.text = "Time elapsed : " + GlobalControl.instance.timeSurvived;
 
-				GlobalControl.instance.savedStats.unlockedLevels++;
+				if (GlobalControl.instance.levelPlayed == GlobalControl.instance.savedStats.unlockedLevels)
+				{
+						GlobalControl.instance.savedStats.unlockedLevels++;
+				}
 
 				//save the highscore in survival mode
 
 				//check if it's equal or lower than the lowest highscore (last index)
-				if (GlobalControl.instance.timeSurvived <= 
+				if (GlobalControl.instance.timeSurvived <=
 						GlobalControl.instance.savedStats.highScores[GlobalControl.instance.savedStats.highScores.Length - 1])
 				{
 						//if so then it's not going to be saved
