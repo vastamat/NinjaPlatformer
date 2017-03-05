@@ -24,14 +24,6 @@ public class RocketSpawner : MonoBehaviour
 		}
 		void Update()
 		{
-				//if (Input.GetKey(KeyCode.Alpha1))
-				//{
-				//		StopLaunching();
-				//}
-				//if (Input.GetKey(KeyCode.Alpha2))
-				//{
-				//		StartLaunching(1.0f);
-				//}
 		}
 		void LaunchRocket()
 		{

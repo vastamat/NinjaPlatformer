@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/** Manages all the UI functions */
 public class UIManager : MonoBehaviour
 {
 		// The slider game object which controls the game volume

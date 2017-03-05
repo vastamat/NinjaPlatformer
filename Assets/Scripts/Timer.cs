@@ -3,12 +3,14 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+		/** The UI text of the elapsed time */
 		public Text text;
 
 		private float time = 0.0f;
 
 		void Start()
 		{
+				//set the time to the previously survived time so that it stays between levels
 				time = GlobalControl.instance.timeSurvived;
 		}
 		// Update is called once per frame

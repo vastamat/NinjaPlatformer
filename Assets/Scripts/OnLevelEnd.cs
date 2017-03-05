@@ -27,8 +27,8 @@ public class OnLevelEnd : MonoBehaviour
 
 				//save the highscore in survival mode
 
-				//check if it's equal or lower than the lowest highscore (last index)
-				if (GlobalControl.instance.timeSurvived <=
+				//check if it's equal or higher than the lowest highscore (last index)
+				if (GlobalControl.instance.timeSurvived >=
 						GlobalControl.instance.savedStats.highScores[GlobalControl.instance.savedStats.highScores.Length - 1])
 				{
 						//if so then it's not going to be saved
@@ -45,15 +45,15 @@ public class OnLevelEnd : MonoBehaviour
 				//set the lowest (last index) to the new score 
 				GlobalControl.instance.savedStats.highScores[GlobalControl.instance.savedStats.highScores.Length - 1] = GlobalControl.instance.timeSurvived;
 
-				//Sort the array from highest at index 0 to lowest at index lenght-1
+				//Sort the array from Lowest time at index 0 to Highest time at index lenght-1
 
 				//(bubble sort)
 				for (int i = 0; i < GlobalControl.instance.savedStats.highScores.Length - 1; i++)
 				{
 						for (int j = i + 1; j < GlobalControl.instance.savedStats.highScores.Length; j++)
 						{
-								// check if the first position (i) is lower than the next position (j)
-								if (GlobalControl.instance.savedStats.highScores[i] < GlobalControl.instance.savedStats.highScores[j])
+								// check if the first position (i) is higher than the next position (j)
+								if (GlobalControl.instance.savedStats.highScores[i] > GlobalControl.instance.savedStats.highScores[j])
 								{
 										//if the element at the first position is lower, then swap it
 										float temp = GlobalControl.instance.savedStats.highScores[j];

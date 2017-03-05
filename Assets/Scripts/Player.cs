@@ -7,41 +7,68 @@ using UnityEngine;
 [RequireComponent(typeof(GibSpawner))]
 public class Player : MonoBehaviour
 {
+		/** The maximum jump height in unity units */
 		public float maxJumpHeight = 4;
+		/** The minimum jump height in unity units */
 		public float minJumpHeight = 1;
+		/** The time it will take to reach the highest point of the jump */
 		public float timeToHighestPoint = 0.4f;
 
+		/** The player's move speed */
 		public float moveSpeed = 6.0f;
+		/** The player's acceleration in air */
 		public float accelerationTimeInAir = 0.2f;
+		/** The player's acceleration on ground */
 		public float accelerationTimeOnGround = 0.1f;
 
+		/** The maximum speed a player can have while sliding a wall */
 		public float maxWallSlideSpeed = 3.0f;
+		/** The time a player has after pressing opposite direction of a wall before he falls normally */
 		public float wallStickTime = 0.25f;
 
+		/** velocity vector of a player's jump while pressing the input towards the wall direction */
 		public Vector2 wallJumpClimb;
+		/** velocity vector of a player's jump while pressing no input */
 		public Vector2 wallJumpOff;
+		/** velocity vector of a player's jump while pressing the input opposite of the wall direction */
 		public Vector2 wallLeap;
 
+		/** Clip to play when the player dies */
 		public AudioClip DeathSound;
 
+		/** The time it takes to unstick from a wall */
 		private float timeToWallUnstick;
+		/** the maximum jump velocity */
 		private float maxJumpVelocity;
+		/** the minimum jump velocity */
 		private float minJumpVelocity;
+		/** the gravity affecting the player */
 		private float gravity;
+		/** the smoothing on the x axis for smooth movements */
 		private float velocityXSmooth;
 
+		/** the velocity of the player */
 		private Vector2 velocity;
 
+		/** the player controller which recieves input and moves him with collision detection */
 		private PlayerController controller;
+		/** the player animator */
 		private Animator anim;
+		/** the player sprite renderer */
 		private SpriteRenderer sr;
+		/** the gibspawner to spawn gibs when the player dies */
 		private GibSpawner gs;
 
+		/** the the directional input the player recieves */
 		private Vector2 directionalInput;
+		/** flag whether the player is currently sliding down a wall */
 		private bool wallSliding = false;
+		/** The direction of the wall the player is sliding (-1 for left, 1 for right) */
 		private int wallDirX;
 
+		/** The player's starting position, used for "respawning" */
 		private Vector3 startPos;
+
 		// Use this for initialization
 		void Start()
 		{

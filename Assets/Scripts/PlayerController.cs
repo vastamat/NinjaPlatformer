@@ -5,6 +5,7 @@ public class PlayerController : RaycastController
 		/** The maximum angle of slope the player can climb */
 		public float maxSlopeAngle = 80.0f;
 
+		/** Collision info of collisions with the player per-frame */
 		private CollisionInfo collisions;
 
 		public override void Start()

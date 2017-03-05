@@ -3,16 +3,25 @@ using UnityEngine;
 
 public class SawbladeController : MonoBehaviour
 {
+		/** The ease amount of the sawblades (how linearly they will go through their waypoints)*/
 		[Range(0.0f, 2.0f)]
 		public float easeAmount = 0.0f;
+		/** How much will the sawblades wait after reaching their waypoint */
 		public float waitTime = 1.0f;
+		/** Movement speed of the saws */
 		public float speed = 5.0f;
+		/** flag whether the saws are cyclic or not (if upon reaching the last waypoint they go to the first one or just backwards) */
 		public bool cyclic = true;
+		/** The waypoints in local space */
 		public Vector2[] localWaypoints;
 
+		/** The waypoints in global space */
 		private Vector2[] globalWaypoints;
+		/** The index of the current waypoint the saw is at */
 		private int fromWaypointIndex;
+		/** The precent of how much distance the saw has traveled from its current waypoint to the next */
 		private float percentBetweenWayoints;
+		/** The time to make the next move (start going to the next waypoint) */
 		private float nextMoveTime;
 		// Use this for initialization
 		void Start()
@@ -31,13 +40,18 @@ public class SawbladeController : MonoBehaviour
 		{
 				if (globalWaypoints.Length != 0)
 				{
+						//calculate the velocity of the saw
 						Vector2 velocity = CalculateMovement();
 
-						float rotationZ = transform.rotation.eulerAngles.z;
+						//temporality store it's current orientation
+						Quaternion rotation = transform.rotation;
 
+						//set the orientation to identity for correct translation
 						transform.rotation = Quaternion.identity;
+						//translate the saw
 						transform.Translate(velocity);
-						transform.Rotate(0.0f, 0.0f, rotationZ);
+						//set back its orientation
+						transform.rotation = rotation;
 				}
 		}
 

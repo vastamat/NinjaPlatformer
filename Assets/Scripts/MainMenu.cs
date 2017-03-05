@@ -2,9 +2,12 @@
 
 public class MainMenu : MonoBehaviour
 {
+		/** The ninja prefab */
 		public GameObject ninja;
 
+		/** has the game been fired */
 		private bool fired = false;
+		/** a timer */
 		private float timer = 0.0f;
 
 		// Update is called once per frame

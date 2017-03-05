@@ -4,9 +4,12 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ExitDoor : MonoBehaviour
 {
+		/** The sprite to use  when the player reaches the exit */
 		public Sprite exitOpened;
 
+		/** The sprite renderer of the player */
 		private SpriteRenderer sr;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -18,7 +21,6 @@ public class ExitDoor : MonoBehaviour
 				if (coll.CompareTag("Player"))
 				{
 						sr.sprite = exitOpened;
-						Debug.Log("Exit Reached, swap scene or whatever");
 						SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 				}
 		}
