@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(ObjectPooler))]
 public class RocketSpawner : MonoBehaviour
@@ -53,8 +54,24 @@ public class RocketSpawner : MonoBehaviour
 		{
 				InvokeRepeating("LaunchRocket", _secondsToFirstLaunch, spawnWait);
 		}
+
 		void StopLaunching()
 		{
 				CancelInvoke("LaunchRocket");
+		}
+
+		void RemoveRockets()
+		{
+				List<GameObject> rockets = objPooler.GetAllObjects();
+				if (rockets.Count == 0)
+				{
+						return;
+				}
+
+				foreach (GameObject rocket in rockets)
+				{
+						//spawn the enemy
+						rocket.SetActive(false);
+				}
 		}
 }
