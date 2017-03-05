@@ -20,7 +20,7 @@ public class GlobalControl : MonoBehaviour
 		/*
 			* the time the played survived in the previous level (for endgame scene)
 			*/
-		public ushort timeSurvived = 0;
+		public float timeSurvived = 0;
 
 		/*
 			* the level that was played (to be used in retry function)

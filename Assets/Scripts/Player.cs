@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(Animator))]
@@ -107,18 +108,15 @@ public class Player : MonoBehaviour
 				{
 						if (wallDirX == directionalInput.x)
 						{
-								velocity.x = -wallDirX * wallJumpClimb.x;
-								velocity.y = wallJumpClimb.y;
+								JumpOffWall(-wallDirX, wallJumpClimb);
 						}
 						else if (directionalInput.x == 0.0f)
 						{
-								velocity.x = -wallDirX * wallJumpOff.x;
-								velocity.y = wallJumpOff.y;
+								JumpOffWall(-wallDirX, wallJumpOff);
 						}
 						else
 						{
-								velocity.x = -wallDirX * wallLeap.x;
-								velocity.y = wallLeap.y;
+								JumpOffWall(-wallDirX, wallLeap);
 						}
 				}
 				if (controller.GetCollisionInfo().below)
@@ -137,6 +135,12 @@ public class Player : MonoBehaviour
 								velocity.y = maxJumpVelocity;
 						}
 				}
+		}
+
+		private void JumpOffWall(int _direction, Vector2 _jumpVelocity)
+		{
+				velocity.x = _direction * _jumpVelocity.x;
+				velocity.y = _jumpVelocity.y;
 		}
 
 		public void OnJumpInputUp()

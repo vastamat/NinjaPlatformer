@@ -7,7 +7,7 @@ public class SavedData
 		/*
 			* the top 10 high scores
 			*/
-		public ushort[] highScores = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		public float[] highScores = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 
 		/*
 			* the unlocked levels (1 to num of levels)

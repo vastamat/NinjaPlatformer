@@ -20,4 +20,10 @@ public class Timer : MonoBehaviour
 		{
 				time = 0.0f;
 		}
+
+		void OnDisable()
+		{
+				//When the user is exiting this level, save the time he survived
+				GlobalControl.instance.timeSurvived = time;
+		}
 }

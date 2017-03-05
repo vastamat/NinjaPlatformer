@@ -13,7 +13,12 @@ public class OnLevelEnd : MonoBehaviour
 				elapsedTime = GetComponent<Text>();
 
 				//set the text to the time survived
-				elapsedTime.text = "Time elapsed : " + GlobalControl.instance.timeSurvived;
+
+				int minutes = (int)(GlobalControl.instance.timeSurvived / 60.0f);
+				int seconds = (int)Mathf.Repeat(GlobalControl.instance.timeSurvived, 60.0f);
+				int millis = (int)Mathf.Repeat(GlobalControl.instance.timeSurvived * 1000.0f, 1000.0f);
+				elapsedTime.text = "Time elapsed : " + minutes.ToString().PadLeft(2, '0') + ":" +
+						seconds.ToString().PadLeft(2, '0') + "." + millis.ToString().PadLeft(3, '0');
 
 				if (GlobalControl.instance.levelPlayed == GlobalControl.instance.savedStats.unlockedLevels)
 				{
@@ -51,7 +56,7 @@ public class OnLevelEnd : MonoBehaviour
 								if (GlobalControl.instance.savedStats.highScores[i] < GlobalControl.instance.savedStats.highScores[j])
 								{
 										//if the element at the first position is lower, then swap it
-										ushort temp = GlobalControl.instance.savedStats.highScores[j];
+										float temp = GlobalControl.instance.savedStats.highScores[j];
 										GlobalControl.instance.savedStats.highScores[j] = GlobalControl.instance.savedStats.highScores[i];
 										GlobalControl.instance.savedStats.highScores[i] = temp;
 								}
