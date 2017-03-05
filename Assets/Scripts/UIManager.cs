@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
 		public void OnLevel1()
 		{
 				GlobalControl.instance.levelPlayed = 1;
-				SceneManager.LoadScene("Level1");
+				SceneManager.LoadScene("lvl_1");
 		}
 
 		public void OnLevel2()
