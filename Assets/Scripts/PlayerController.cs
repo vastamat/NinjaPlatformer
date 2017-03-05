@@ -61,7 +61,7 @@ public class PlayerController : RaycastController
 
 						if (hit)
 						{
-								if (hit.collider.CompareTag("Fatal"))
+								if (hit.collider.CompareTag("Fatal") || hit.collider.CompareTag("FatalRefreshable"))
 								{
 										collisions.fatalCollision = true;
 								}
@@ -125,7 +125,7 @@ public class PlayerController : RaycastController
 
 						if (hit)
 						{
-								if (hit.collider.CompareTag("Fatal"))
+								if (hit.collider.CompareTag("Fatal") || hit.collider.CompareTag("FatalRefreshable"))
 								{
 										collisions.fatalCollision = true;
 								}

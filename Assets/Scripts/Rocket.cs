@@ -40,8 +40,8 @@ public class Rocket : MonoBehaviour
 				}
 		}
 
-		void Obliterate()
+	 void Obliterate()
 		{
-				Destroy(gameObject, 0.02f);
+				gameObject.SetActive(false);
 		}
 }

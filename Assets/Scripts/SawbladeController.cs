@@ -15,7 +15,7 @@ public class SawbladeController : MonoBehaviour
 		private float percentBetweenWayoints;
 		private float nextMoveTime;
 		// Use this for initialization
-	 void Start()
+		void Start()
 		{
 				globalWaypoints = new Vector2[localWaypoints.Length];
 
@@ -79,7 +79,7 @@ public class SawbladeController : MonoBehaviour
 				return newPos - new Vector2(transform.position.x, transform.position.y);
 		}
 
-	 float Ease(float _percentBetweenWayoints)
+		float Ease(float _percentBetweenWayoints)
 		{
 				float eased = easeAmount + 1;
 
